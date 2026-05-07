@@ -619,14 +619,16 @@ function handleKeydown(event: KeyboardEvent) {
       </section>
     </transition>
 
-    <button class="ai-assistant-launcher" :class="{ active: panelOpen }" @click="togglePanel">
-      <span class="ai-assistant-launcher-ring"></span>
-      <span class="ai-assistant-launcher-core">
-        <n-icon size="24">
-          <ChatbubbleEllipsesOutline />
-        </n-icon>
-      </span>
-    </button>
+    <transition name="assistant-launcher">
+      <button v-if="!panelOpen" class="ai-assistant-launcher" @click="togglePanel">
+        <span class="ai-assistant-launcher-ring"></span>
+        <span class="ai-assistant-launcher-core">
+          <n-icon size="24">
+            <ChatbubbleEllipsesOutline />
+          </n-icon>
+        </span>
+      </button>
+    </transition>
   </div>
 </template>
 
@@ -953,8 +955,7 @@ function handleKeydown(event: KeyboardEvent) {
     box-shadow 0.5s ease;
 }
 
-.ai-assistant-launcher:hover .ai-assistant-launcher-core,
-.ai-assistant-launcher.active .ai-assistant-launcher-core {
+.ai-assistant-launcher:hover .ai-assistant-launcher-core {
   transform: scale(1.06);
   box-shadow:
     0 26px 44px rgba(16, 74, 177, 0.38),
@@ -973,6 +974,30 @@ function handleKeydown(event: KeyboardEvent) {
 .assistant-panel-leave-to {
   opacity: 0;
   transform: translateY(18px) scale(0.88);
+}
+
+.assistant-launcher-enter-active {
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
+    transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s;
+}
+
+.assistant-launcher-leave-active {
+  transition:
+    opacity 0.28s cubic-bezier(0.33, 0, 0.67, 1),
+    transform 0.32s cubic-bezier(0.33, 0, 0.67, 1);
+}
+
+.assistant-launcher-enter-from,
+.assistant-launcher-leave-to {
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+.assistant-launcher-enter-to,
+.assistant-launcher-leave-from {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .assistant-message-enter-active,
