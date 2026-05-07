@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 数据（如果 data 目录内的数据不应公开，请保留）
+# data/
+
+# 若 doc 或某些文件过大不想上传，可继续添加

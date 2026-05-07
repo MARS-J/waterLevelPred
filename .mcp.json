@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@sarmadparvez/postgresql-mcp",
+        "postgresql://postgres:root@localhost:5432/wd?schema=public"
+      ]
+    }
+  }
+}

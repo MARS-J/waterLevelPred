@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: waterlevel-server
+
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/wd
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 12010
+  servlet:
+    context-path: /api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+algorithm:
+  service:
+    base-url: http://127.0.0.1:18081
+    connect-timeout-ms: 3000
+    read-timeout-ms: 60000
+
+ai:
+  assistant:
+    base-url: https://api.siliconflow.cn/v1
+    model: Qwen/Qwen3.5-4B
+    api-key: ${SILICONFLOW_API_KEY:}
+    connect-timeout-ms: 3000
+    read-timeout-ms: 120000
+    max-tokens: 2048
+    proxy-host: ${AI_ASSISTANT_PROXY_HOST:192.168.31.221}
+    proxy-port: ${AI_ASSISTANT_PROXY_PORT:7897}
